@@ -1,0 +1,46 @@
+graphs:
+
+  - id: Broker
+    nodes:
+    - id: proxy
+      module: timeflux.nodes.zmq
+      class: Broker
+
+  - id: PhysioLOGX-4
+    nodes:
+    - id: pl4
+      module: timeflux_pl4.nodes.driver
+      class: PhysioLOGX
+    - id: pub_1024
+      module: timeflux.nodes.zmq
+      class: Pub
+      params:
+        topic: channels_12
+    - id: pub_256
+      module: timeflux.nodes.zmq
+      class: Pub
+      params:
+        topic: channels_34
+    edges:
+    - source: pl4:1024hz
+      target: pub_1024
+    - source: pl4:256hz
+      target: pub_256
+    rate: 10
+
+  - id: UI
+    nodes:
+    - id: sub
+      module: timeflux.nodes.zmq
+      class: Sub
+      params:
+        topics: [channels_12, channels_34]
+    - id: monitor
+      module: timeflux_ui.nodes.ui
+      class: UI
+    edges:
+    - source: sub:channels_12
+      target: monitor:channels_12
+    - source: sub:channels_34
+      target: monitor:channels_34
+    rate: 10

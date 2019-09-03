@@ -1,0 +1,20 @@
+graphs:
+
+  - id: PhysioLOGX-4
+    nodes:
+    - id: pl4
+      module: timeflux_pl4.nodes.driver
+      class: PhysioLOGX
+    - id: display_1024
+      module: timeflux.nodes.debug
+      class: Display
+    - id: display_256
+      module: timeflux.nodes.debug
+      class: Display
+    edges:
+    - source: pl4:1024hz
+      target: display_1024
+    - source: pl4:256hz
+      target: display_256
+    rate: 10
+
