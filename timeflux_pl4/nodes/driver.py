@@ -42,14 +42,14 @@ class PhysioLOGX(Node):
         o_256hz (Port): Channels 3 and 4, provide DataFrame.
 
     Example:
-        .. literalinclude:: /../test/graphs/pl4.yaml
+        .. literalinclude:: /../../timeflux_pl4/test/graphs/pl4.yaml
            :language: yaml
 
-    See:
-        https://www.ftdichip.com/Products/ICs/FT232R.htm
-        https://www.ftdichip.com/Drivers/VCP.htm
-        https://www.ftdichip.com/Drivers/D2XX.htm
-        https://pypi.org/project/ftd2xx
+    See
+        - https://www.ftdichip.com/Products/ICs/FT232R.htm
+        - https://www.ftdichip.com/Drivers/VCP.htm
+        - https://www.ftdichip.com/Drivers/D2XX.htm
+        - https://pypi.org/project/ftd2xx
 
     """
 
